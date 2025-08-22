@@ -1,0 +1,19 @@
+{
+  "name": "smrt_trvl",
+  "version": "1.0.0",
+  "description": "Smart travel starter web page",
+  "scripts": {
+    "start": "lite-server",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "eslint": "^9.34.0",
+    "jest": "^30.0.5",
+    "lite-server": "^2.6.1"
+  }
+}

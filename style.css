@@ -1,0 +1,57 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f0f0f0;
+}
+
+#hello {
+  position: absolute;
+  font-size: 3rem;
+  animation: moveToTop 2s forwards;
+}
+
+@keyframes moveToTop {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  100% {
+    top: 10px;
+    left: 20px;
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+}
+
+#form-container {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+#form-container.show {
+  opacity: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+#progress {
+  width: 100%;
+  background: #ddd;
+  height: 10px;
+  margin-top: 1rem;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0;
+  background: #4caf50;
+  transition: width 0.2s;
+}
