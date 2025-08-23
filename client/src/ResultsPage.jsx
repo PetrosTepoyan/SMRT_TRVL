@@ -6,10 +6,8 @@ import React from 'react';
  */
 export default function ResultsPage({ tours = [], events = [] }) {
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
-      <div
-        style={{ flex: 2, padding: '1rem', overflowY: 'auto', borderRight: '1px solid #e2e8f0' }}
-      >
+    <div className="results-container">
+      <div className="tours">
         <h2>Tours</h2>
         {tours.length === 0 && <p>No tours found.</p>}
         {tours.map((tour, idx) => (
@@ -26,9 +24,7 @@ export default function ResultsPage({ tours = [], events = [] }) {
           </div>
         ))}
       </div>
-      <div
-        style={{ flex: 1, padding: '1rem', overflowY: 'auto', background: '#f1f5f9' }}
-      >
+      <div className="events">
         <h2>Events</h2>
         {events.length === 0 && <p>No events found.</p>}
         {events.map((event, idx) => (

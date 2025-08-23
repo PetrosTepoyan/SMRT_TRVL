@@ -1,0 +1,73 @@
+/* Global styles based on root style.css */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+}
+
+/* Landing page layout */
+.landing-container {
+  display: flex;
+  height: 100vh;
+}
+
+.landing-form {
+  flex: 0 0 25%;
+  padding: 1rem;
+  background: #f1f5f9;
+  overflow-y: auto;
+}
+
+.landing-map {
+  flex: 1 0 75%;
+}
+
+/* Results page layout */
+.results-container {
+  display: flex;
+  height: 100vh;
+}
+
+.results-container .tours {
+  flex: 3;
+  padding: 1rem;
+  overflow-y: auto;
+  border-right: 1px solid #e2e8f0;
+}
+
+.results-container .events {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background: #f1f5f9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .landing-container,
+  .results-container {
+    flex-direction: column;
+  }
+
+  .landing-form,
+  .landing-map {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    height: 50vh;
+  }
+
+  .results-container .tours,
+  .results-container .events {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .results-container .tours {
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+  }
+}
