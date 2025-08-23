@@ -1,0 +1,6 @@
+{
+  "currencies": [
+    { "code": "RUB", "symbol": "\u20BD", "name": "Russian Ruble", "country": "Russia" },
+    { "code": "USD", "symbol": "\u0024", "name": "US Dollar", "country": "United States" }
+  ]
+}
