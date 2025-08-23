@@ -1,11 +1,23 @@
-const ticketmasterProvider = require('../providers/ticketmasterProvider');
-const tomsarkghProvider = require('../providers/tomsarkghProvider');
+const fs = require('fs');
+const path = require('path');
 
-// Mapping of ISO country codes to provider modules
-const providerRegistry = {
-  US: ticketmasterProvider,
-  AM: tomsarkghProvider
-};
+// Default provider when no match is found.
+const defaultProvider = require('../providers/ticketmasterProvider');
+
+// Dynamically load provider modules based on the files in the providers folder.
+const providersDir = path.join(__dirname, '../providers');
+const providerRegistry = {};
+
+fs.readdirSync(providersDir).forEach((file) => {
+  if (!file.endsWith('Provider.js') || file.includes('.test.')) {
+    return;
+  }
+  const provider = require(path.join(providersDir, file));
+  const codes = provider.supportedCountryCodes || [];
+  codes.forEach((code) => {
+    providerRegistry[code.toUpperCase()] = provider;
+  });
+});
 
 /**
  * Retrieve events using the appropriate provider based on country code.
@@ -16,7 +28,7 @@ const providerRegistry = {
  */
 async function getEvents(countryCode = 'US', dateRange = {}) {
   const code = countryCode.toUpperCase();
-  const provider = providerRegistry[code] || ticketmasterProvider;
+  const provider = providerRegistry[code] || defaultProvider;
   if (!provider) {
     return [];
   }

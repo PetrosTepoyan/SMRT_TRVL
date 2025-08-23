@@ -2,6 +2,8 @@ const axios = require('axios');
 
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events.json';
 
+// ISO country codes handled by this provider.
+const supportedCountryCodes = ['US'];
 /**
  * Fetch events from Ticketmaster API.
  *
@@ -41,4 +43,4 @@ async function fetchEvents(countryCode, dateRange = {}) {
   }
 }
 
-module.exports = { fetchEvents };
+module.exports = { fetchEvents, supportedCountryCodes };
