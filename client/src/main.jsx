@@ -1,9 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import LandingPage from './LandingPage';
 
-function App() {
-  return <h1>Hello from React</h1>;
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+ReactDOM.createRoot(document.getElementById('root')).render(<LandingPage />);
