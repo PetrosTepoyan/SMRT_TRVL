@@ -1,0 +1,8 @@
+{
+  "sourceCountries": [
+    { "code": "AM", "name": "Armenia", "flag": "\uD83C\uDDE6\uD83C\uDDF2" }
+  ],
+  "destinationCountries": [
+    { "code": "AM", "name": "Armenia", "flag": "\uD83C\uDDE6\uD83C\uDDF2" }
+  ]
+}
