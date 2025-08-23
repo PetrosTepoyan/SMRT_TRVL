@@ -57,3 +57,7 @@ npm test
 ```
 
 The starter page displays a friendly “Hello” that animates to the top and fades away, revealing a form to enter your start destination, desired destination, and budget. Clicking the **Search** button shows a progress bar to indicate activity.
+
+## Assets
+
+The world map relies on a [GeoJSON file of world countries](https://github.com/holtzy/D3-graph-gallery/blob/master/DATA/world.geojson) from the D3 Graph Gallery project. A local copy is bundled with the app at `client/public/world.geojson` so the map can render offline.
