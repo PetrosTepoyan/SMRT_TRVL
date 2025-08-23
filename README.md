@@ -9,6 +9,22 @@ The project is split into a frontend and backend:
 - **client/** – React frontend powered by Vite. Start the development server with `npm run dev` inside the `client` folder.
 - **server/** – Express backend for API and services. Start the server with `npm start` inside the `server` folder.
 
+### Configuration
+
+The backend uses environment variables for external API credentials. Copy `server/.env.example` to `server/.env` and fill in your values:
+
+```
+PORT=3000
+TOURVISOR_LOGIN=your_login
+TOURVISOR_PASSWORD=your_password
+TICKETMASTER_API_KEY=your_ticketmaster_api_key
+```
+
+### API Endpoints
+
+- `GET /api/tours` – fetch tours from Tourvisor using the credentials above.
+- `GET /api/events` – fetch events data from Ticketmaster.
+
 ## Development
 
 Install dependencies and start the development server:
