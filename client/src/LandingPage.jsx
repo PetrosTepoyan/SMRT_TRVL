@@ -34,11 +34,8 @@ export default function LandingPage({ onSearch }) {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
-      <form
-        onSubmit={handleSubmit}
-        style={{ flex: '0 0 300px', padding: '1rem', background: '#f1f5f9' }}
-      >
+    <div className="landing-container">
+      <form onSubmit={handleSubmit} className="landing-form">
         <h2>Plan your trip</h2>
         <div>
           <label htmlFor="departure">Departure Country</label>
@@ -100,7 +97,7 @@ export default function LandingPage({ onSearch }) {
           {loading ? 'Loading…' : 'Search'}
         </button>
       </form>
-      <div style={{ flex: 1 }}>
+      <div className="landing-map">
         <WorldMap />
       </div>
     </div>
