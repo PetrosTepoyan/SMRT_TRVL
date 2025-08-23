@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import LandingPage from './LandingPage';
+import App from './App';
 
-ReactDOM.createRoot(document.getElementById('root')).render(<LandingPage />);
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);

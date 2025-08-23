@@ -25,6 +25,12 @@ TICKETMASTER_API_KEY=your_ticketmaster_api_key
 - `GET /api/tours` – fetch tours from Tourvisor using the credentials above.
 - `GET /api/events` – fetch events data from Ticketmaster.
 
+## Results Page and Navigation
+
+Searches on the landing page fetch tours and events and then scroll the viewport to a full-screen results page. The layout uses
+CSS scroll snapping to treat the landing and results sections as vertical pages. Tours appear in the larger left column with
+links to Tourvisor, while events are listed on the right with links to their ticket providers.
+
 ## Development
 
 Install dependencies and start the development server:

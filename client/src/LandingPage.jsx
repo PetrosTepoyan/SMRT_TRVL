@@ -4,10 +4,10 @@ import WorldMap from './WorldMap';
 
 /**
  * LandingPage shows the trip form and a world map side by side.
- * It loads country options from countries.json and fetches
- * tours and events from the backend when the form is submitted.
+ * It loads country options from countries.json and notifies
+ * the parent component when the form is submitted.
  */
-export default function LandingPage() {
+export default function LandingPage({ onSearch }) {
   const [departure, setDeparture] = useState('');
   const [destination, setDestination] = useState('');
   const [budget, setBudget] = useState('');
@@ -19,18 +19,13 @@ export default function LandingPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      const params = new URLSearchParams({
+      await onSearch({
         departure,
         destination,
         budget,
         startDate,
         endDate,
       });
-
-      await Promise.all([
-        fetch(`/api/tours?${params.toString()}`),
-        fetch(`/api/events?${params.toString()}`),
-      ]);
     } catch (err) {
       console.error(err);
     } finally {
