@@ -1,8 +1,8 @@
 const express = require('express');
-const axios = require('axios');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const { searchTours } = require('./services/toursService');
+const { getEvents } = require('./services/eventsService');
 
 dotenv.config();
 
@@ -30,13 +30,9 @@ app.get('/api/tours', async (req, res) => {
 
 app.get('/api/events', async (req, res) => {
   try {
-    const response = await axios.get('https://app.ticketmaster.com/discovery/v2/events.json', {
-      params: {
-        apikey: process.env.TICKETMASTER_API_KEY,
-        ...req.query
-      }
-    });
-    res.json(response.data);
+    const { country, startDate, endDate } = req.query;
+    const events = await getEvents(country, { startDate, endDate });
+    res.json(events);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch events' });
   }
