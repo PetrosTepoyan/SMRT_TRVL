@@ -22,16 +22,33 @@ export default function WorldMap() {
     svg.selectAll('*').remove();
     svg.attr('viewBox', `0 0 ${width} ${height}`);
 
-    d3.json('https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson')
+    const drawMap = (geojson) => {
+      svg
+        .append('g')
+        .selectAll('path')
+        .data(geojson.features)
+        .enter()
+        .append('path')
+        .attr('d', path)
+        .attr('fill', '#d4d4d4')
+        .attr('stroke', '#999');
+    };
+
+    d3
+      .json('/world.geojson')
+      .catch((err) => {
+        // Fallback to hosted file if the local asset is missing.
+        console.warn('Local map unavailable, fetching remote copy', err);
+        return d3.json(
+          'https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson'
+        );
+      })
       .then((geojson) => {
-        svg.append('g')
-          .selectAll('path')
-          .data(geojson.features)
-          .enter()
-          .append('path')
-          .attr('d', path)
-          .attr('fill', '#d4d4d4')
-          .attr('stroke', '#999');
+        if (geojson) {
+          drawMap(geojson);
+        } else {
+          throw new Error('No GeoJSON data loaded');
+        }
       })
       .catch((err) => console.error('Failed to load map', err));
   }, []);
