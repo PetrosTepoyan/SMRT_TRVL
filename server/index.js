@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const { searchTours } = require('./services/toursService');
 
 dotenv.config();
 
@@ -19,14 +20,9 @@ app.get('/', (req, res) => {
 
 app.get('/api/tours', async (req, res) => {
   try {
-    const response = await axios.get('https://export.tourvisor.ru/search', {
-      params: {
-        login: process.env.TOURVISOR_LOGIN,
-        password: process.env.TOURVISOR_PASSWORD,
-        ...req.query
-      }
-    });
-    res.json(response.data);
+    const { departureCode, destinationCode, budget } = req.query;
+    const tours = await searchTours({ departureCode, destinationCode, budget });
+    res.json(tours);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch tours' });
   }
