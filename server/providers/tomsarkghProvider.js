@@ -2,6 +2,8 @@ const axios = require('axios');
 
 const BASE_URL = 'https://www.tomsarkgh.am/sitemap/events';
 
+// ISO country codes handled by this provider.
+const supportedCountryCodes = ['AM'];
 /**
  * Fetch events from Tomsarkgh sitemap.
  *
@@ -47,4 +49,4 @@ async function fetchEvents(countryCode, dateRange = {}) {
   return results;
 }
 
-module.exports = { fetchEvents };
+module.exports = { fetchEvents, supportedCountryCodes };
