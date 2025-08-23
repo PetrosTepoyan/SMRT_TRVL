@@ -55,6 +55,39 @@ test('fills form and displays results', async () => {
   expect(await screen.findByText('Mock Event')).toBeInTheDocument();
 });
 
+test('shows progress indicator while results are loading', async () => {
+  const resolvers = [];
+  global.fetch = vi.fn(
+    () =>
+      new Promise((resolve) => {
+        resolvers.push(resolve);
+      })
+  );
+
+  render(<App />);
+
+  await userEvent.selectOptions(
+    screen.getByLabelText(/Departure Country/i),
+    'AM'
+  );
+  await userEvent.selectOptions(
+    screen.getByLabelText(/Destination Country/i),
+    'AM'
+  );
+  await userEvent.type(screen.getByLabelText(/Budget/i), '1000');
+
+  const click = userEvent.click(
+    screen.getByRole('button', { name: /search/i })
+  );
+
+  expect(
+    await screen.findByRole('status', { name: /loading/i })
+  ).toBeInTheDocument();
+
+  resolvers.forEach((r) => r({ json: () => Promise.resolve([]) }));
+  await click;
+});
+
 afterEach(() => {
   vi.restoreAllMocks();
 });

@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import countries from './countries.json';
 import WorldMap from './WorldMap';
 
+function Spinner() {
+  return <div className="spinner" role="status" aria-label="loading" />;
+}
+
 /**
  * LandingPage shows the trip form and a world map side by side.
  * It loads country options from countries.json and notifies
@@ -94,7 +98,7 @@ export default function LandingPage({ onSearch }) {
           />
         </div>
         <button type="submit" disabled={loading}>
-          {loading ? 'Loading…' : 'Search'}
+          {loading ? <Spinner /> : 'Search'}
         </button>
       </form>
       <div className="landing-map">
